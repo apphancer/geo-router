@@ -1,0 +1,5 @@
+parameters:
+    default_domain: 'www.example.com'
+    country_domain_mappings:
+        US: 'www.example.us'
+        CA: 'www.example.us'

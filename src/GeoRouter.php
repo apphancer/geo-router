@@ -6,12 +6,9 @@ class GeoRouter
 {
     private const COOKIE = 'userPreferredSite';
 
-    private $defaultDomain = 'www.example.com';
+    private $defaultDomain;
 
-    private $countryDomainMappings = [
-        'US' => 'www.example.us',
-        'CA' => 'www.example.us',
-    ];
+    private $countryDomainMappings;
 
     private $url;
 
@@ -21,6 +18,11 @@ class GeoRouter
     {
         $this->url = $url;
         $this->ipCountry = $ipCountry;
+
+        $data = yaml_parse_file(__DIR__ . '/../config/geo_router.yaml');
+
+        $this->defaultDomain = $data['parameters']['default_domain'];
+        $this->countryDomainMappings = $data['parameters']['country_domain_mappings'];
     }
 
     public function getDomainForIpCountry() : string
